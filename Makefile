@@ -3,6 +3,7 @@ SHELL = /bin/bash
 build:
 	docker build \
 		--build-arg GDAL_VERSION=3.0 \
+		--build-arg REQ_VERSION=gdal3.0 \
 		--tag vexcel/amazonlinux:gdal3.0-py3.7 .
 
 layer: build
@@ -20,6 +21,7 @@ layer: build
 build2:
 	docker build \
 		--build-arg GDAL_VERSION=2.4 \
+		--build-arg REQ_VERSION=gdal2.4 \
 		--tag vexcel/amazonlinux:gdal2.4-py3.7 .
 
 layer2: build2
