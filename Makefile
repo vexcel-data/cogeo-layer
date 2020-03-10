@@ -1,12 +1,12 @@
 SHELL = /bin/bash
 
-build:
+buildgdal3:
 	docker build \
 		--build-arg GDAL_VERSION=3.0 \
-		--build-arg REQ_VERSION=gdal3.0 \
+		--build-arg REQ_VERSION=only-gdal30 \
 		--tag vexcel/amazonlinux:gdal3.0-py3.7 .
 
-layer: build
+layergdal3: buildgdal3
 	docker run \
 		--name lambda \
 		-w /var/task \
@@ -18,13 +18,13 @@ layer: build
 	docker stop lambda
 	docker rm lambda
 
-build2:
+buildgdal2:
 	docker build \
 		--build-arg GDAL_VERSION=2.4 \
-		--build-arg REQ_VERSION=gdal2.4 \
+		--build-arg REQ_VERSION=only-gdal24 \
 		--tag vexcel/amazonlinux:gdal2.4-py3.7 .
 
-layer2: build2
+layergdal2: buildgdal2
 	docker run \
 		--name lambda \
 		-w /var/task \
